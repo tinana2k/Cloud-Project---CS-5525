@@ -1,7 +1,7 @@
-# 🍔 Cloud Project — CS-5525
+# Cloud Project — CS-5525
 
 ## 📌 Project Title
-**Online Food/Service Ordering Application (Cloud-Based)**
+
 
 ---
 
@@ -17,24 +17,17 @@
 
 ## 🎯 Project Overview
 
-This project is a **cloud-based web application** that allows users to browse a food menu, add items to a cart, and place orders. The system stores and retrieves data from a cloud database and demonstrates core cloud computing concepts such as deployment, scalability, and data management.
+
 
 ---
 
 ## 💡 Features
 
 ### ✅ Core Features
-- View food menu
-- Add items to cart
-- Place order
-- Store orders in cloud database
-- View order history (admin side)
+
 
 ### ⭐ Optional Features
-- User login system
-- Order status tracking
-- Data visualization dashboard
-- Search and filter menu
+
 
 ---
 
@@ -77,24 +70,16 @@ Cloud Hosting (AWS / Azure / GCP)
 ## 👨‍💻 Responsibilities Breakdown
 
 ### Frontend
-- Build UI (menu, cart, checkout)
-- Connect to backend APIs
+
 
 ### Backend
-- Develop APIs for orders and menu
-- Handle business logic
 
 ### Database
-- Design schema (menu, orders)
-- Manage cloud database
+
 
 ### Cloud/Deployment
-- Deploy application to cloud
-- Configure hosting and endpoints
+
 
 ### QA / Analytics / Documentation
-- Testing and debugging
-- Create charts/dashboard
-- Write documentation and report
 
 ---
