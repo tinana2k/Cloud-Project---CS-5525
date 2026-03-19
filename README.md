@@ -7,11 +7,11 @@
 
 ## 👥 Team Members & Roles
 
-- **Tina Nguyen** (@tinana2k) — Frontend Developer  
-- **Tony Nguyen** (@mosomo82) — Backend Developer  
-- **Bhavya Harshitha Chennu** (@Bhavyachennu) — Database Engineer  
-- **Geethika Padamati** (@Geethspadamati) — Cloud & Deployment Engineer  
-- **Joe Doan** (@JoeDoan) — QA, Analytics & Documentation  
+- **Tina Nguyen** (@tinana2k) —   
+- **Tony Nguyen** (@mosomo82) —   
+- **Bhavya Harshitha Chennu** (@Bhavyachennu) —   
+- **Geethika Padamati** (@Geethspadamati) —   
+- **Joe Doan** (@JoeDoan) —   
 
 ---
 
