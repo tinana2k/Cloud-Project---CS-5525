@@ -765,4 +765,13 @@ Full interactive API documentation available at `http://localhost:8000/docs` whe
 
 ---
 
+## Project Files
+ 
+| File | Link |
+|---|---|
+| Interactive app demo | [golfiq_demo.html](./golfiq_demo.html) |
+| Project comparison | [golfiq_comparison.html](./golfiq_comparison.html) |
+
+---
+
 *GolfIQ — Big Data & Analytics Course Project*
