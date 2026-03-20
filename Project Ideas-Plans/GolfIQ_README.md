@@ -769,8 +769,8 @@ Full interactive API documentation available at `http://localhost:8000/docs` whe
  
 | File | Link |
 |---|---|
-| Interactive app demo | [golfiq_demo.html](./golfiq_demo.html) |
-| Project comparison | [golfiq_comparison.html](./golfiq_comparison.html) |
+| Interactive app demo | [golfiq_app_demo.html](./golfiq_app_demo.html) |
+| Project comparison | [golfiq_comparison.html](./project_comparison.html) |
 
 ---
 
