@@ -1,7 +1,7 @@
 Cloud-Based Healthcare Management System
 Project Description
 The Cloud-Based Healthcare Management System is a web application designed to manage patient records, doctor information, and appointment scheduling using cloud infrastructure. The system ensures secure data storage, remote accessibility, and scalability by leveraging cloud computing services. It allows patients to register, book appointments, and access their medical information, while doctors and administrators can manage records efficiently.
-👥 Team Work Distribution:
+👥 Team Work Distribution: 
 The project is divided into modules, where each team member is responsible for developing one complete module, including frontend, backend, database, cloud deployment, and testing.
 Member 1 – Authentication Module
 Responsible for implementing user login and registration functionality, including frontend UI, backend APIs, database schema for users, cloud deployment, and authentication testing.
