@@ -769,8 +769,8 @@ Full interactive API documentation available at `http://localhost:8000/docs` whe
  
 | Resource | Description |
 |---|---|
-| [Interactive App Demo](https://htmlpreview.github.io/?https://github.com/tinana2k/Cloud-Project---CS-5525/blob/main/Project%20Ideas-Plans/golfiq_demo.html) | Full clickable UI mockup |
-| [Project Comparison](https://htmlpreview.github.io/?https://github.com/tinana2k/Cloud-Project---CS-5525/blob/main/Project%20Ideas-Plans/golfiq_comparison.html) | 5-project evaluation |
+| [Interactive App Demo](https://htmlpreview.github.io/?https://github.com/tinana2k/Cloud-Project---CS-5525/blob/main/Project%20Ideas-Plans/golfiq_app_demo.html) | Full clickable UI mockup |
+| [Project Comparison](https://htmlpreview.github.io/?https://github.com/tinana2k/Cloud-Project---CS-5525/blob/main/Project%20Ideas-Plans/project_comparison.html) | 5-project evaluation |
 
 ---
 
