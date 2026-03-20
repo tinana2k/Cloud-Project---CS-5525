@@ -1,0 +1,373 @@
+
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  .app{font-family:var(--font-sans);background:var(--color-background-tertiary);min-height:600px}
+  .topbar{background:var(--color-background-primary);border-bottom:0.5px solid var(--color-border-tertiary);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:52px}
+  .logo{font-size:16px;font-weight:500;color:var(--color-text-primary);display:flex;align-items:center;gap:8px}
+  .logo-dot{width:10px;height:10px;border-radius:50%;background:#1D9E75}
+  .nav-tabs{display:flex;gap:2px}
+  .nav-tab{padding:6px 14px;border-radius:var(--border-radius-md);font-size:13px;cursor:pointer;color:var(--color-text-secondary);border:none;background:transparent}
+  .nav-tab.active{background:var(--color-background-secondary);color:var(--color-text-primary);font-weight:500}
+  .avatar{width:32px;height:32px;border-radius:50%;background:#E1F5EE;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:#0F6E56}
+  .content{padding:20px}
+  .screen{display:none}
+  .screen.active{display:block}
+  .metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:18px}
+  .metric{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px 14px}
+  .metric-label{font-size:11px;color:var(--color-text-tertiary);margin-bottom:4px}
+  .metric-val{font-size:22px;font-weight:500;color:var(--color-text-primary)}
+  .metric-sub{font-size:11px;margin-top:2px}
+  .metric-up{color:#0F6E56}
+  .metric-dn{color:#A32D2D}
+  .card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:16px;margin-bottom:14px}
+  .card-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:12px}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .insight-box{background:#E1F5EE;border:0.5px solid #9FE1CB;border-radius:var(--border-radius-lg);padding:14px;margin-bottom:14px}
+  .insight-label{font-size:11px;font-weight:500;color:#0F6E56;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+  .insight-dot{width:6px;height:6px;border-radius:50%;background:#0F6E56}
+  .insight-text{font-size:13px;color:#085041;line-height:1.6}
+  .hcp-badge{display:inline-flex;align-items:center;gap:6px;background:#EEEDFE;border:0.5px solid #AFA9EC;border-radius:20px;padding:4px 12px;font-size:13px;font-weight:500;color:#3C3489}
+  .round-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+  .round-row:last-child{border-bottom:none}
+  .round-course{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+  .round-date{font-size:11px;color:var(--color-text-tertiary);margin-top:2px}
+  .score-pill{padding:3px 10px;border-radius:20px;font-size:12px;font-weight:500}
+  .score-good{background:#E1F5EE;color:#0F6E56}
+  .score-ok{background:#FAEEDA;color:#633806}
+  .score-bad{background:#FCEBEB;color:#A32D2D}
+  .hole-grid{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;margin-bottom:6px}
+  .hole-cell{text-align:center;font-size:11px;padding:4px 2px;border-radius:4px}
+  .hole-hdr{color:var(--color-text-tertiary);font-weight:500}
+  .hole-par{color:var(--color-text-secondary)}
+  .hole-birdie{background:#E1F5EE;color:#0F6E56;font-weight:500}
+  .hole-par-score{background:var(--color-background-secondary);color:var(--color-text-secondary)}
+  .hole-bogey{background:#FAEEDA;color:#633806}
+  .hole-double{background:#FCEBEB;color:#A32D2D}
+  .stat-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .stat-bar-label{font-size:12px;color:var(--color-text-secondary);min-width:80px}
+  .stat-bar-track{flex:1;height:8px;background:var(--color-background-secondary);border-radius:4px;overflow:hidden}
+  .stat-bar-fill{height:100%;border-radius:4px}
+  .stat-bar-val{font-size:12px;font-weight:500;color:var(--color-text-primary);min-width:36px;text-align:right}
+  .form-row{margin-bottom:12px}
+  .form-label{font-size:12px;color:var(--color-text-secondary);margin-bottom:4px;display:block}
+  .form-input{width:100%;padding:8px 10px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);font-size:13px;background:var(--color-background-primary);color:var(--color-text-primary)}
+  .scorecard-grid{display:grid;grid-template-columns:28px repeat(9,1fr);gap:3px;font-size:11px;margin-bottom:4px}
+  .sc-hdr{text-align:center;color:var(--color-text-tertiary);font-weight:500;padding:3px}
+  .sc-label{color:var(--color-text-secondary);font-size:10px;display:flex;align-items:center}
+  .sc-cell{text-align:center;padding:4px 2px;border-radius:3px}
+  .submit-btn{width:100%;padding:10px;background:#1D9E75;color:#fff;border:none;border-radius:var(--border-radius-md);font-size:14px;font-weight:500;cursor:pointer;margin-top:8px}
+  .submit-btn:hover{background:#0F6E56}
+  .leaderboard-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+  .leaderboard-row:last-child{border-bottom:none}
+  .lb-rank{font-size:13px;font-weight:500;color:var(--color-text-tertiary);min-width:20px}
+  .lb-avatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;flex-shrink:0}
+  .lb-name{font-size:13px;font-weight:500;color:var(--color-text-primary);flex:1}
+  .lb-hcp{font-size:12px;color:var(--color-text-secondary)}
+  .lb-score{font-size:13px;font-weight:500}
+</style>
+
+<div class="app">
+  <div class="topbar">
+    <div class="logo"><div class="logo-dot"></div>GolfIQ</div>
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="showScreen('dashboard')">Dashboard</button>
+      <button class="nav-tab" onclick="showScreen('rounds')">Rounds</button>
+      <button class="nav-tab" onclick="showScreen('log')">Log round</button>
+      <button class="nav-tab" onclick="showScreen('leaderboard')">Leaderboard</button>
+    </div>
+    <div class="avatar">TK</div>
+  </div>
+
+  <div class="content">
+
+    <div class="screen active" id="screen-dashboard">
+      <div class="metric-grid">
+        <div class="metric">
+          <div class="metric-label">Handicap index</div>
+          <div class="metric-val">14.2</div>
+          <div class="metric-sub metric-up">▲ improved from 16.8</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Scoring avg (last 10)</div>
+          <div class="metric-val">+7.4</div>
+          <div class="metric-sub metric-up">▲ down from +9.1</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">GIR %</div>
+          <div class="metric-val">31%</div>
+          <div class="metric-sub metric-up">▲ up from 24%</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Avg putts / round</div>
+          <div class="metric-val">33.2</div>
+          <div class="metric-sub metric-dn">▼ up from 31.8</div>
+        </div>
+      </div>
+
+      <div class="insight-box">
+        <div class="insight-label"><div class="insight-dot"></div>AI coaching insight — this week</div>
+        <div class="insight-text">Your biggest scoring opportunity is approach shots from 125–150 yards. Over your last 15 rounds, you hit only 4 of 22 greens (18%) from this range — well below your 31% overall GIR. Your 7-iron carries ~140 yards but your dispersion suggests you're consistently coming up short. Try taking one extra club and swinging at 80% — your GIR from 100–125 yards is 44%, so contact quality isn't the issue.</div>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Scoring trend — last 12 rounds</div>
+          <div style="position:relative;height:160px"><canvas id="chartScore"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Handicap trajectory</div>
+          <div style="position:relative;height:160px"><canvas id="chartHcp"></canvas></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Key stats breakdown</div>
+        <div class="stat-bar-row"><div class="stat-bar-label">GIR %</div><div class="stat-bar-track"><div class="stat-bar-fill" style="width:31%;background:#1D9E75"></div></div><div class="stat-bar-val">31%</div></div>
+        <div class="stat-bar-row"><div class="stat-bar-label">Fairways hit</div><div class="stat-bar-track"><div class="stat-bar-fill" style="width:52%;background:#378ADD"></div></div><div class="stat-bar-val">52%</div></div>
+        <div class="stat-bar-row"><div class="stat-bar-label">Up & down</div><div class="stat-bar-track"><div class="stat-bar-fill" style="width:28%;background:#7F77DD"></div></div><div class="stat-bar-val">28%</div></div>
+        <div class="stat-bar-row"><div class="stat-bar-label">Sand saves</div><div class="stat-bar-track"><div class="stat-bar-fill" style="width:20%;background:#EF9F27"></div></div><div class="stat-bar-val">20%</div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Scoring by par type (avg vs par)</div>
+        <div style="position:relative;height:130px"><canvas id="chartPar"></canvas></div>
+      </div>
+    </div>
+
+    <div class="screen" id="screen-rounds">
+      <div class="card">
+        <div class="card-title">Recent rounds</div>
+        <div class="round-row">
+          <div><div class="round-course">Swope Memorial Golf Course</div><div class="round-date">Mar 15, 2026 · 18 holes · White tees</div></div>
+          <div style="display:flex;align-items:center;gap:8px"><span class="score-pill score-ok">83 (+11)</span></div>
+        </div>
+        <div class="round-row">
+          <div><div class="round-course">Staley Farms Golf Club</div><div class="round-date">Mar 8, 2026 · 18 holes · White tees</div></div>
+          <div><span class="score-pill score-ok">86 (+14)</span></div>
+        </div>
+        <div class="round-row">
+          <div><div class="round-course">Blue Springs Golf Club</div><div class="round-date">Feb 28, 2026 · 18 holes · Blue tees</div></div>
+          <div><span class="score-pill score-good">79 (+7)</span></div>
+        </div>
+        <div class="round-row">
+          <div><div class="round-course">Swope Memorial Golf Course</div><div class="round-date">Feb 21, 2026 · 18 holes · White tees</div></div>
+          <div><span class="score-pill score-bad">91 (+19)</span></div>
+        </div>
+        <div class="round-row">
+          <div><div class="round-course">Longview Lake Golf Course</div><div class="round-date">Feb 14, 2026 · 18 holes · White tees</div></div>
+          <div><span class="score-pill score-ok">84 (+12)</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Last round scorecard — Swope Memorial, Mar 15</div>
+        <div class="scorecard-grid">
+          <div class="sc-label">Hole</div>
+          <div class="sc-hdr">1</div><div class="sc-hdr">2</div><div class="sc-hdr">3</div><div class="sc-hdr">4</div><div class="sc-hdr">5</div><div class="sc-hdr">6</div><div class="sc-hdr">7</div><div class="sc-hdr">8</div><div class="sc-hdr">9</div>
+        </div>
+        <div class="scorecard-grid">
+          <div class="sc-label">Par</div>
+          <div class="sc-cell hole-par">4</div><div class="sc-cell hole-par">3</div><div class="sc-cell hole-par">5</div><div class="sc-cell hole-par">4</div><div class="sc-cell hole-par">4</div><div class="sc-cell hole-par">3</div><div class="sc-cell hole-par">5</div><div class="sc-cell hole-par">4</div><div class="sc-cell hole-par">4</div>
+        </div>
+        <div class="scorecard-grid">
+          <div class="sc-label">Score</div>
+          <div class="sc-cell hole-bogey">5</div><div class="sc-cell hole-par-score">3</div><div class="sc-cell hole-birdie">4</div><div class="sc-cell hole-double">6</div><div class="sc-cell hole-bogey">5</div><div class="sc-cell hole-par-score">3</div><div class="sc-cell hole-bogey">6</div><div class="sc-cell hole-par-score">4</div><div class="sc-cell hole-bogey">5</div>
+        </div>
+        <div style="margin-top:10px;font-size:11px;color:var(--color-text-tertiary);display:flex;gap:12px;flex-wrap:wrap">
+          <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#E1F5EE;margin-right:4px"></span>Birdie</span>
+          <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--color-background-secondary);margin-right:4px"></span>Par</span>
+          <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#FAEEDA;margin-right:4px"></span>Bogey</span>
+          <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#FCEBEB;margin-right:4px"></span>Double+</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen" id="screen-log">
+      <div class="card">
+        <div class="card-title">Round details</div>
+        <div class="two-col">
+          <div class="form-row"><label class="form-label">Course name</label><input class="form-input" value="Swope Memorial Golf Course"></div>
+          <div class="form-row"><label class="form-label">Date</label><input class="form-input" type="date" value="2026-03-19"></div>
+        </div>
+        <div class="two-col">
+          <div class="form-row"><label class="form-label">Tee played</label>
+            <select class="form-input"><option>White</option><option>Blue</option><option>Red</option><option>Gold</option></select>
+          </div>
+          <div class="form-row"><label class="form-label">Weather</label>
+            <select class="form-input"><option>Sunny</option><option>Cloudy</option><option>Windy</option><option>Rain</option></select>
+          </div>
+        </div>
+        <div class="two-col">
+          <div class="form-row"><label class="form-label">Course rating</label><input class="form-input" value="71.4"></div>
+          <div class="form-row"><label class="form-label">Slope rating</label><input class="form-input" value="128"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Hole-by-hole scores (front 9)</div>
+        <div class="hole-grid">
+          <div class="hole-cell hole-hdr">Hole</div>
+          <div class="hole-cell hole-hdr">1</div><div class="hole-cell hole-hdr">2</div><div class="hole-cell hole-hdr">3</div><div class="hole-cell hole-hdr">4</div><div class="hole-cell hole-hdr">5</div><div class="hole-cell hole-hdr">6</div><div class="hole-cell hole-hdr">7</div><div class="hole-cell hole-hdr">8</div>
+        </div>
+        <div class="hole-grid">
+          <div class="hole-cell hole-hdr">Par</div>
+          <div class="hole-cell hole-par">4</div><div class="hole-cell hole-par">3</div><div class="hole-cell hole-par">5</div><div class="hole-cell hole-par">4</div><div class="hole-cell hole-par">4</div><div class="hole-cell hole-par">3</div><div class="hole-cell hole-par">5</div><div class="hole-cell hole-par">4</div>
+        </div>
+        <div class="hole-grid" style="margin-bottom:10px">
+          <div class="hole-cell hole-hdr">Score</div>
+          <input style="text-align:center;border:0.5px solid var(--color-border-secondary);border-radius:4px;font-size:11px;padding:3px;background:var(--color-background-primary);color:var(--color-text-primary)" value="5">
+          <input style="text-align:center;border:0.5px solid var(--color-border-secondary);border-radius:4px;font-size:11px;padding:3px;background:var(--color-background-primary);color:var(--color-text-primary)" value="3">
+          <input style="text-align:center;border:0.5px solid var(--color-border-secondary);border-radius:4px;font-size:11px;padding:3px;background:var(--color-background-primary);color:var(--color-text-primary)" value="6">
+          <input style="text-align:center;border:0.5px solid var(--color-border-secondary);border-radius:4px;font-size:11px;padding:3px;background:var(--color-background-primary);color:var(--color-text-primary)" value="4">
+          <input style="text-align:center;border:0.5px solid var(--color-border-secondary);border-radius:4px;font-size:11px;padding:3px;background:var(--color-background-primary);color:var(--color-text-primary)" value="5">
+          <input style="text-align:center;border:0.5px solid var(--color-border-secondary);border-radius:4px;font-size:11px;padding:3px;background:var(--color-background-primary);color:var(--color-text-primary)" value="4">
+          <input style="text-align:center;border:0.5px solid var(--color-border-secondary);border-radius:4px;font-size:11px;padding:3px;background:var(--color-background-primary);color:var(--color-text-primary)" value="6">
+          <input style="text-align:center;border:0.5px solid var(--color-border-secondary);border-radius:4px;font-size:11px;padding:3px;background:var(--color-background-primary);color:var(--color-text-primary)" value="5">
+        </div>
+        <div class="hole-grid">
+          <div class="hole-cell hole-hdr">Putts</div>
+          <input style="text-align:center;border:0.5px solid var(--color-border-secondary);border-radius:4px;font-size:11px;padding:3px;background:var(--color-background-primary);color:var(--color-text-primary)" value="2">
+          <input style="text-align:center;border:0.5px solid var(--color-border-secondary);border-radius:4px;font-size:11px;padding:3px;background:var(--color-background-primary);color:var(--color-text-primary)" value="1">
+          <input style="text-align:center;border:0.5px solid var(--color-border-secondary);border-radius:4px;font-size:11px;padding:3px;background:var(--color-background-primary);color:var(--color-text-primary)" value="2">
+          <input style="text-align:center;border:0.5px solid var(--color-border-secondary);border-radius:4px;font-size:11px;padding:3px;background:var(--color-background-primary);color:var(--color-text-primary)" value="2">
+          <input style="text-align:center;border:0.5px solid var(--color-border-secondary);border-radius:4px;font-size:11px;padding:3px;background:var(--color-background-primary);color:var(--color-text-primary)" value="3">
+          <input style="text-align:center;border:0.5px solid var(--color-border-secondary);border-radius:4px;font-size:11px;padding:3px;background:var(--color-background-primary);color:var(--color-text-primary)" value="2">
+          <input style="text-align:center;border:0.5px solid var(--color-border-secondary);border-radius:4px;font-size:11px;padding:3px;background:var(--color-background-primary);color:var(--color-text-primary)" value="2">
+          <input style="text-align:center;border:0.5px solid var(--color-border-secondary);border-radius:4px;font-size:11px;padding:3px;background:var(--color-background-primary);color:var(--color-text-primary)" value="2">
+        </div>
+        <div style="display:flex;gap:16px;margin-top:12px;font-size:12px;color:var(--color-text-secondary)">
+          <label style="display:flex;align-items:center;gap:5px;cursor:pointer"><input type="checkbox" checked> Track GIR</label>
+          <label style="display:flex;align-items:center;gap:5px;cursor:pointer"><input type="checkbox" checked> Track fairways</label>
+          <label style="display:flex;align-items:center;gap:5px;cursor:pointer"><input type="checkbox"> Shot-level detail</label>
+        </div>
+        <button class="submit-btn" onclick="sendPrompt('How does GolfIQ calculate the USGA handicap after I submit a round?')">Submit round — save to Snowflake ↗</button>
+      </div>
+    </div>
+
+    <div class="screen" id="screen-leaderboard">
+      <div class="card" style="margin-bottom:14px">
+        <div class="card-title">Friend group — net score leaderboard</div>
+        <div class="leaderboard-row">
+          <div class="lb-rank">1</div>
+          <div class="lb-avatar" style="background:#EEEDFE;color:#3C3489">SK</div>
+          <div style="flex:1"><div class="lb-name">Sarah K.</div><div class="lb-hcp">Hcp 8.1</div></div>
+          <div class="lb-score" style="color:#0F6E56">Net 71</div>
+        </div>
+        <div class="leaderboard-row">
+          <div class="lb-rank">2</div>
+          <div class="lb-avatar" style="background:#E1F5EE;color:#0F6E56">TK</div>
+          <div style="flex:1"><div class="lb-name">Tony K. (you)</div><div class="lb-hcp">Hcp 14.2</div></div>
+          <div class="lb-score" style="color:#185FA5">Net 73</div>
+        </div>
+        <div class="leaderboard-row">
+          <div class="lb-rank">3</div>
+          <div class="lb-avatar" style="background:#FAEEDA;color:#633806">MR</div>
+          <div style="flex:1"><div class="lb-name">Marcus R.</div><div class="lb-hcp">Hcp 18.6</div></div>
+          <div class="lb-score">Net 76</div>
+        </div>
+        <div class="leaderboard-row">
+          <div class="lb-rank">4</div>
+          <div class="lb-avatar" style="background:#FAECE7;color:#712B13">JL</div>
+          <div style="flex:1"><div class="lb-name">Jamie L.</div><div class="lb-hcp">Hcp 22.0</div></div>
+          <div class="lb-score">Net 79</div>
+        </div>
+        <div class="leaderboard-row">
+          <div class="lb-rank">5</div>
+          <div class="lb-avatar" style="background:#F1EFE8;color:#444441">DW</div>
+          <div style="flex:1"><div class="lb-name">Derek W.</div><div class="lb-hcp">Hcp 28.3</div></div>
+          <div class="lb-score" style="color:#A32D2D">Net 84</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Handicap comparison — all friends</div>
+        <div style="position:relative;height:160px"><canvas id="chartLb"></canvas></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+const cfg = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: { legend: { display: false } },
+  scales: {
+    x: { grid: { color: 'rgba(120,120,120,0.08)' }, ticks: { font: { size: 10 }, color: '#888' } },
+    y: { grid: { color: 'rgba(120,120,120,0.08)' }, ticks: { font: { size: 10 }, color: '#888' } }
+  }
+};
+
+new Chart(document.getElementById('chartScore'), {
+  type: 'line',
+  data: {
+    labels: ['Oct','Oct','Nov','Nov','Dec','Dec','Jan','Jan','Feb','Feb','Mar','Mar'],
+    datasets: [{
+      data: [97,93,91,89,88,86,85,84,83,82,83,83],
+      borderColor: '#1D9E75', backgroundColor: 'rgba(29,158,117,0.08)',
+      borderWidth: 2, pointRadius: 3, pointBackgroundColor: '#1D9E75', fill: true, tension: 0.3
+    }]
+  },
+  options: { ...cfg, scales: { ...cfg.scales, y: { ...cfg.scales.y, reverse: false, ticks: { font:{size:10}, color:'#888', callback: v => v } } } }
+});
+
+new Chart(document.getElementById('chartHcp'), {
+  type: 'line',
+  data: {
+    labels: ['Oct','Nov','Nov','Dec','Jan','Jan','Feb','Feb','Mar'],
+    datasets: [{
+      data: [19.2,18.1,17.4,16.8,16.1,15.5,15.0,14.6,14.2],
+      borderColor: '#378ADD', backgroundColor: 'rgba(55,138,221,0.08)',
+      borderWidth: 2, pointRadius: 3, pointBackgroundColor: '#378ADD', fill: true, tension: 0.3
+    }]
+  },
+  options: { ...cfg }
+});
+
+new Chart(document.getElementById('chartPar'), {
+  type: 'bar',
+  data: {
+    labels: ['Par 3', 'Par 4', 'Par 5'],
+    datasets: [{
+      data: [0.8, 2.1, 1.4],
+      backgroundColor: ['#B5D4F4','#378ADD','#185FA5'],
+      borderRadius: 4, borderSkipped: false
+    }]
+  },
+  options: {
+    ...cfg,
+    scales: {
+      x: { grid: { display: false }, ticks: { font:{size:11}, color:'#888' } },
+      y: { grid: { color:'rgba(120,120,120,0.08)' }, ticks: { font:{size:10}, color:'#888', callback: v => '+' + v.toFixed(1) } }
+    }
+  }
+});
+
+new Chart(document.getElementById('chartLb'), {
+  type: 'bar',
+  data: {
+    labels: ['Sarah K.', 'Tony K.', 'Marcus R.', 'Jamie L.', 'Derek W.'],
+    datasets: [{
+      data: [8.1, 14.2, 18.6, 22.0, 28.3],
+      backgroundColor: ['#9FE1CB','#1D9E75','#FAC775','#EF9F27','#D3D1C7'],
+      borderRadius: 4, borderSkipped: false
+    }]
+  },
+  options: {
+    ...cfg,
+    scales: {
+      x: { grid: { display: false }, ticks: { font:{size:11}, color:'#888' } },
+      y: { grid: { color:'rgba(120,120,120,0.08)' }, ticks: { font:{size:10}, color:'#888' } }
+    }
+  }
+});
+</script>

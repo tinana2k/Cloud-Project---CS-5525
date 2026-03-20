@@ -1,0 +1,107 @@
+
+<style>
+  .proj-card { border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 16px; margin-bottom: 12px; background: var(--color-background-primary); }
+  .proj-card.top { border-color: #1D9E75; border-width: 1.5px; }
+  .proj-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .proj-name { font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
+  .rank-badge { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 500; }
+  .r1 { background: #E1F5EE; color: #0F6E56; }
+  .r2 { background: #E6F1FB; color: #0C447C; }
+  .r3 { background: #FAEEDA; color: #633806; }
+  .r4 { background: #F1EFE8; color: #444441; }
+  .r5 { background: #FCEBEB; color: #A32D2D; }
+  @media (prefers-color-scheme: dark) {
+    .r1 { background: #085041; color: #9FE1CB; }
+    .r2 { background: #0C447C; color: #B5D4F4; }
+    .r3 { background: #633806; color: #FAC775; }
+    .r4 { background: #444441; color: #D3D1C7; }
+    .r5 { background: #791F1F; color: #F7C1C1; }
+  }
+  .score-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .score-label { font-size: 11px; color: var(--color-text-tertiary); min-width: 130px; }
+  .score-track { flex: 1; height: 6px; background: var(--color-background-secondary); border-radius: 3px; overflow: hidden; }
+  .score-fill { height: 100%; border-radius: 3px; }
+  .score-num { font-size: 11px; font-weight: 500; color: var(--color-text-secondary); min-width: 24px; text-align: right; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+  .tag { font-size: 10px; padding: 2px 8px; border-radius: 20px; border: 0.5px solid var(--color-border-secondary); color: var(--color-text-secondary); }
+  .verdict { font-size: 12px; color: var(--color-text-secondary); margin-top: 8px; line-height: 1.5; border-top: 0.5px solid var(--color-border-tertiary); padding-top: 8px; }
+</style>
+
+<div style="padding: 4px 0">
+
+<div class="proj-card top">
+  <div class="proj-header">
+    <div class="proj-name">SQL Injection / Data Leak Detector</div>
+    <span class="rank-badge r1">Best for resume</span>
+  </div>
+  <div class="score-row"><div class="score-label">Recruiter attention</div><div class="score-track"><div class="score-fill" style="width:95%;background:#1D9E75"></div></div><div class="score-num">9.5</div></div>
+  <div class="score-row"><div class="score-label">Industry demand</div><div class="score-track"><div class="score-fill" style="width:90%;background:#1D9E75"></div></div><div class="score-num">9.0</div></div>
+  <div class="score-row"><div class="score-label">Skill depth shown</div><div class="score-track"><div class="score-fill" style="width:88%;background:#1D9E75"></div></div><div class="score-num">8.8</div></div>
+  <div class="score-row"><div class="score-label">Salary premium</div><div class="score-track"><div class="score-fill" style="width:92%;background:#1D9E75"></div></div><div class="score-num">9.2</div></div>
+  <div class="skill-tags">
+    <span class="tag">Cloud security</span><span class="tag">SQL / database</span><span class="tag">Threat detection</span><span class="tag">Data engineering</span><span class="tag">Cybersecurity</span>
+  </div>
+  <div class="verdict">Cybersecurity + cloud is the highest-paying combo in tech right now. "Built a cloud-native SQL injection detection system" is a bullet point that gets calls. Every company that runs a database (everyone) needs this skill.</div>
+</div>
+
+<div class="proj-card">
+  <div class="proj-header">
+    <div class="proj-name">Cloud Healthcare Project</div>
+    <span class="rank-badge r2">Strong #2</span>
+  </div>
+  <div class="score-row"><div class="score-label">Recruiter attention</div><div class="score-track"><div class="score-fill" style="width:80%;background:#378ADD"></div></div><div class="score-num">8.0</div></div>
+  <div class="score-row"><div class="score-label">Industry demand</div><div class="score-track"><div class="score-fill" style="width:85%;background:#378ADD"></div></div><div class="score-num">8.5</div></div>
+  <div class="score-row"><div class="score-label">Skill depth shown</div><div class="score-track"><div class="score-fill" style="width:75%;background:#378ADD"></div></div><div class="score-num">7.5</div></div>
+  <div class="score-row"><div class="score-label">Salary premium</div><div class="score-track"><div class="score-fill" style="width:78%;background:#378ADD"></div></div><div class="score-num">7.8</div></div>
+  <div class="skill-tags">
+    <span class="tag">Health IT</span><span class="tag">Cloud architecture</span><span class="tag">Data privacy</span><span class="tag">HIPAA concepts</span>
+  </div>
+  <div class="verdict">Healthcare tech is a massive hiring vertical. If you want to work at Epic, CVS, insurance tech, or hospital systems, this project signals domain familiarity. The downside: scope is complex and hard to execute well in 7 weeks.</div>
+</div>
+
+<div class="proj-card">
+  <div class="proj-header">
+    <div class="proj-name">GolfIQ Dashboard</div>
+    <span class="rank-badge r3">Best for data / AI roles</span>
+  </div>
+  <div class="score-row"><div class="score-label">Recruiter attention</div><div class="score-track"><div class="score-fill" style="width:75%;background:#EF9F27"></div></div><div class="score-num">7.5</div></div>
+  <div class="score-row"><div class="score-label">Industry demand</div><div class="score-track"><div class="score-fill" style="width:70%;background:#EF9F27"></div></div><div class="score-num">7.0</div></div>
+  <div class="score-row"><div class="score-label">Skill depth shown</div><div class="score-track"><div class="score-fill" style="width:85%;background:#EF9F27"></div></div><div class="score-num">8.5</div></div>
+  <div class="score-row"><div class="score-label">Salary premium</div><div class="score-track"><div class="score-fill" style="width:72%;background:#EF9F27"></div></div><div class="score-num">7.2</div></div>
+  <div class="skill-tags">
+    <span class="tag">Snowflake</span><span class="tag">AI / LLM integration</span><span class="tag">Data warehouse</span><span class="tag">Full-stack</span><span class="tag">Analytics</span>
+  </div>
+  <div class="verdict">Snowflake + Claude API is a genuinely differentiated skill stack. Strong for data engineer, analytics engineer, or AI product roles. The niche domain (golf) actually helps — it's memorable and unique vs generic food delivery apps.</div>
+</div>
+
+<div class="proj-card">
+  <div class="proj-header">
+    <div class="proj-name">Online Food / Service Ordering App</div>
+    <span class="rank-badge r4">Weakest signal</span>
+  </div>
+  <div class="score-row"><div class="score-label">Recruiter attention</div><div class="score-track"><div class="score-fill" style="width:45%;background:#888780"></div></div><div class="score-num">4.5</div></div>
+  <div class="score-row"><div class="score-label">Industry demand</div><div class="score-track"><div class="score-fill" style="width:60%;background:#888780"></div></div><div class="score-num">6.0</div></div>
+  <div class="score-row"><div class="score-label">Skill depth shown</div><div class="score-track"><div class="score-fill" style="width:50%;background:#888780"></div></div><div class="score-num">5.0</div></div>
+  <div class="score-row"><div class="score-label">Salary premium</div><div class="score-track"><div class="score-fill" style="width:40%;background:#888780"></div></div><div class="score-num">4.0</div></div>
+  <div class="skill-tags">
+    <span class="tag">Full-stack</span><span class="tag">REST API</span><span class="tag">Cloud hosting</span>
+  </div>
+  <div class="verdict">Every bootcamp graduate has built a food ordering app. Recruiters have seen thousands. It shows you can build CRUD — but nothing that separates you. Skip unless your team pivots it to something niche.</div>
+</div>
+
+<div class="proj-card">
+  <div class="proj-header">
+    <div class="proj-name">Entertainment Personal Cloud</div>
+    <span class="rank-badge r5">Avoid</span>
+  </div>
+  <div class="score-row"><div class="score-label">Recruiter attention</div><div class="score-track"><div class="score-fill" style="width:30%;background:#E24B4A"></div></div><div class="score-num">3.0</div></div>
+  <div class="score-row"><div class="score-label">Industry demand</div><div class="score-track"><div class="score-fill" style="width:35%;background:#E24B4A"></div></div><div class="score-num">3.5</div></div>
+  <div class="score-row"><div class="score-label">Skill depth shown</div><div class="score-track"><div class="score-fill" style="width:40%;background:#E24B4A"></div></div><div class="score-num">4.0</div></div>
+  <div class="score-row"><div class="score-label">Salary premium</div><div class="score-track"><div class="score-fill" style="width:28%;background:#E24B4A"></div></div><div class="score-num">2.8</div></div>
+  <div class="skill-tags">
+    <span class="tag">Storage</span><span class="tag">Streaming</span><span class="tag">Cloud infra</span>
+  </div>
+  <div class="verdict">Plex already exists and does this better. Hard to explain what's novel. Low skill signal and no clear career path it unlocks. Weakest resume value of the five.</div>
+</div>
+
+</div>
